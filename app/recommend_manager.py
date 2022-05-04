@@ -10,6 +10,7 @@ warnings.filterwarnings("ignore")  # ignore warnings
 class MovieManager():
     def __init__(self):
         self.item_similarity_df = self.load_recommendation()
+        self.movie_watched = []
 
     def load_recommendation(self):
         item_similarity_df = pd.read_csv(
@@ -19,6 +20,15 @@ class MovieManager():
         # TODO: CACHCE item_similarity_df
 
         return item_similarity_df
+
+    def add_movie(self, movie):
+        self.movie_watched.append(movie)
+
+    def clear_movie(self):
+        self.movie_watched.clear()
+
+    def get_watched_movie(self):
+        return self.movie_watched
 
     def check_seen(self, recommended_movies, watched_movies):
         for movie in watched_movies:
@@ -42,11 +52,12 @@ class MovieManager():
             f"*****************************Watched Movies:\n{watched_movies}")
         similar_movies = pd.DataFrame()
 
+        #TODO: When only a single movie is watched it will not iterate
         for movie, rating in watched_movies:
             similar_movies = similar_movies.append(
                 self.get_similar_movies(movie, rating), ignore_index=True)
 
-        all_recommend = similar_movies.sum().sort_values(ascending=False)  # CLEAN
+        all_recommend = similar_movies.sum().sort_values(ascending=False)  
 
         print(
             f"*****************************ALL RECOMMENDED:\n{all_recommend}")
@@ -75,7 +86,9 @@ if __name__ == "__main__":
     #     ("(500) Days of Summer (2009)", 3),
     #     ("10 Things I Hate About You (1999)", 3)
     # ]
+    # movieManager.add_movie(["Zombieland (2009)", 5])
+    # movieManager.add_movie(["Zootopia (2016)", 1])
 
-    # recommended_movies = movieManager.getRecommendations(movie_user)
+    # recommended_movies = movieManager.getRecommendations(movieManager.get_watched_movie())
     # print(recommended_movies)
 

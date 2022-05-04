@@ -19,9 +19,9 @@ def home():
     return render_template("index.html")
 
 
-@app.route("/recommend", methods=["GET"])
-def recommend_api():
-    ''' API CALL '''
+@app.route("/get_recommend", methods=["GET"])
+def get_recommendation():
+    '''  '''
     movie_user = [
         ("Zombieland (2009)", 5),
         ("Zootopia (2016)", 1),
@@ -34,9 +34,31 @@ def recommend_api():
 
     return jsonify(recommended_movies)
 
-# ------------------------------- BACKEND FUNCS ------------------------------ #
+@app.route("/add_watched")
+def add_watched():
+    '''
+        when button is clicked
+            get input form
+            movieManager.add_movie(from_input)
+    '''
+    pass
 
+@app.route("/display_recommendation")
+def display_recommendation():
+    '''
+        when get_recommendation is clicked
+            display all recommended movies
+    '''
+    pass
 
+@app.route("/clear_movies")
+def clear_movies():
+    ''' 
+        when clear_movies button is clicked
+            movieManager.clear_movies()
+            go_to(display_recommendation) # to clear displayed recommended
+    '''
+    pass
 
 if __name__ == '__main__':
     app.run(debug = True)
