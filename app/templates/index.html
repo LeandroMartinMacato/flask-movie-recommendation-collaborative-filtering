@@ -1,6 +1,14 @@
 {% extends "base.html" %}
 
 {% block content %}
-<h2> Index page</h2>
-<a href="http://127.0.0.1:5000/recommend"> Recommend API Link</a>
+<div class="container-content">
+    <form class = "mb-3" action="#" method="post" style="margin-top:20px;">
+        <label for="exampleInputEmail1" class="form-label">Movie Title</label>
+        <p> <input type="text" name="plate_input" class="form-control"/></p>
+        <div id="emailHelp" class="form-text"> INPUT TIPS </div>
+        <br>
+        <p> <button onclick="register_checker()" type="submit" value="submit" class="btn btn-primary">Submit</button>
+    </form>
+    <a href="http://127.0.0.1:5000/recommend"> Recommend API Link</a>
+</div>
 {% endblock %}
