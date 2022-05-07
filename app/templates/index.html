@@ -2,13 +2,52 @@
 
 {% block content %}
 <div class="container-content">
-    <form class = "mb-3" action="#" method="post" style="margin-top:20px;">
+    <form class = "row mb-3" action="#" method="post" style="margin-top:20px;">
+        <div class="col-sm-8"> 
         <label for="exampleInputEmail1" class="form-label">Movie Title</label>
-        <p> <input type="text" name="plate_input" class="form-control"/></p>
-        <div id="emailHelp" class="form-text"> INPUT TIPS </div>
-        <br>
-        <p> <button onclick="register_checker()" type="submit" value="submit" class="btn btn-primary">Submit</button>
+        <input type="text" name="movie_input" class="form-control"/>
+        <div id="movie-title-guide" class="form-text"> Input any movie you want to review !</div>
+        </div>
+
+        <div class="col-sm"> 
+        <label for="exampleInputEmail1" class="form-label">Movie Rating</label>
+        <select name="rating_input" class="form-select" aria-label="Default select example">
+            <option selected></option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+        </select>
+        <div id="movie-rate-guide" class="form-text"> Rate the movie from 1 - 5 </div>
+        </div>
+
+        <p></p>
+        <p> <button type="submit" value="submit" class="btn btn-outline-primary">Submit Movie Review</button>
+            
+        <a href=# id="test">
+            <button class="btn btn-outline-dark">Clear Movie Review</button>
+        </a>
     </form>
-    <a href="http://127.0.0.1:5000/get_recommend"> Recommend API Link</a>
+    <!-- <a href="http://127.0.0.1:5000/get_recommend"> Recommend API Link</a> -->
+    <h3> Recommended Movies: </h3>
+    <button onclick="show_movies()" type="button" class="btn btn-outline-success">Show Recommendation</button>
+    <br>
+    <div class="flex-movies-parent">
+        <!-- <div class="flex-movie-child"> TEST </div>
+        <div class="flex-movie-child"> TEST </div>
+        <div class="flex-movie-child"> TEST </div> -->
+
+        <div id="dynamic_movies">{{RECO_MOVIES}}</div>
+    </div>
 </div>
+
+
+{% endblock %}
+
+{% block scripts %}
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='script.js') }}"></script>
+
 {% endblock %}

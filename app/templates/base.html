@@ -10,14 +10,23 @@
     <!-- ----------------------------- CUSTOM CSS ------------------------------ -->
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
 
+    <!-- -------------------------------- FONT --------------------------------- -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Titillium+Web&display=swap" rel="stylesheet">
     <title>Recommendation System</title>
 </head>
 <body>
     <nav class="navbar navbar-light bg-dark">
-    <div class="container-fluid"></div>
-        <a class="navbar-brand" href="#" style="color: white;">
-        <img src="https://cdn-icons-png.flaticon.com/512/3163/3163508.png" alt="" width="30" height="24" class="d-inline-block align-text-top">
-        Recommendation System using Collaborative Filtering
+    <div class="container">
+        <a class="navbar-brand" href="#">
+        <img src="static/icon.png" alt="LOGO" width="70" height="64" class="d-inline-block align-top">
+        <span class="navbar-brand mb-0 h1" 
+        style="
+        color:white;
+        margin-left: 30px;
+        font-size: 1.7rem;
+        "> Movie Recommendation System </span>
         </a>
     </div>
     </nav>
@@ -26,7 +35,6 @@
     <!-- ---------------------------------- - ---------------------------------- -->
 
     <!-- ------------------------------- SCRIPTS ------------------------------- -->
-    
     {% block scripts %} {% endblock %}
 
 </body>

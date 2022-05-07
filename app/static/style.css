@@ -1,6 +1,7 @@
 * {
 	margin: 0;
 	padding: 0;
+    font-family: 'Titillium Web', sans-serif;
 }
 
 body{
@@ -9,5 +10,20 @@ body{
 
 .container-content{
     margin: auto;
-    width: 75%
+    width: 50%
 }
+
+.flex-movies-parent{
+    display: flex;
+    gap: 2rem;
+    flex-direction: row;
+    width: 100%;
+    background-color: gray;
+}
+
+.flex-movies-parent #flex-movie-child{
+    flex: 1;
+    background-color: gray;
+    flex-grow: 1;
+}
+

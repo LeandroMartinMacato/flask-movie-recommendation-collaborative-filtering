@@ -36,7 +36,7 @@ class MovieManager():
                 return True
         return False
 
-    def get_similar_movies(self, movie_name, user_ratings):
+    def get_similar_movie(self, movie_name, user_ratings):
         try:
             similar_score = self.item_similarity_df[movie_name]*(
                 user_ratings-2.5)
@@ -55,7 +55,7 @@ class MovieManager():
         #TODO: When only a single movie is watched it will not iterate
         for movie, rating in watched_movies:
             similar_movies = similar_movies.append(
-                self.get_similar_movies(movie, rating), ignore_index=True)
+                self.get_similar_movie(movie, rating), ignore_index=True)
 
         all_recommend = similar_movies.sum().sort_values(ascending=False)  
 

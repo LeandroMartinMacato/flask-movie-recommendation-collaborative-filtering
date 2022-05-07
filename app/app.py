@@ -1,7 +1,7 @@
 import pandas as pd
 from scipy import sparse
 from sklearn.metrics.pairwise import cosine_similarity
-from flask import Flask, request, jsonify , render_template
+from flask import Flask, request, jsonify , render_template 
 from recommend_manager import MovieManager
 
 import warnings
@@ -14,34 +14,34 @@ app = Flask(__name__)
 # ------------------------------- FLASK ROUTES ------------------------------- #
 
 
-@app.route("/")
+@app.route("/" , methods=["POST" , "GET"])
 def home():
+    try:
+        if request.method == "POST":
+            movie_form_input = request.form["movie_input"]
+            try:
+                rating_form_input = int(request.form["rating_input"])
+            except Exception as e:
+                print("EXCEPTION: at rating_form_input")
+
+
+            if movie_form_input and rating_form_input:
+                movieManager.add_movie([movie_form_input , rating_form_input])
+            else:
+                print("No movie Added , Detected Empty form")
+
+
+            print(f"{movie_form_input} added")
+    except Exception as e:
+        print(f"EXCEPTION AT HOME: {e}")
     return render_template("index.html")
 
 
-@app.route("/get_recommend", methods=["GET"])
+@app.route("/get_recommend", methods=["POST"])
 def get_recommendation():
-    '''  '''
-    movie_user = [
-        ("Zombieland (2009)", 5),
-        ("Zootopia (2016)", 1),
-        ("10 Cloverfield Lane (2016)", 1),
-        ("(500) Days of Summer (2009)", 3),
-        ("10 Things I Hate About You (1999)", 3)
-    ]
+    recommended_movies = movieManager.getRecommendations(movieManager.get_watched_movie())
 
-    recommended_movies = movieManager.getRecommendations(movie_user)
-
-    return jsonify(recommended_movies)
-
-@app.route("/add_watched")
-def add_watched():
-    '''
-        when button is clicked
-            get input form
-            movieManager.add_movie(from_input)
-    '''
-    pass
+    return jsonify('',render_template('dynamic_movies.html', RECO_MOVIES = recommended_movies))
 
 @app.route("/display_recommendation")
 def display_recommendation():
@@ -51,16 +51,14 @@ def display_recommendation():
     '''
     pass
 
-@app.route("/clear_movies")
-def clear_movies():
-    ''' 
-        when clear_movies button is clicked
-            movieManager.clear_movies()
-            go_to(display_recommendation) # to clear displayed recommended
-    '''
-    pass
+@app.route("/clear_movies" , methods=["POST" , "GET"])
+def clear_existing_movies():
+    movieManager.clear_movie()
+    log_message = "Movies Cleared"
+    print("Movies Cleared")
+
+    return jsonify('',render_template('dynamic_movies.html' , LOG = log_message))
 
 if __name__ == '__main__':
     app.run(debug = True)
 
-# https://medium.com/code-heroku/how-to-turn-your-machine-learning-scripts-into-projects-you-can-demo-cbc5611ca442
