@@ -2,6 +2,24 @@
 
 {% block content %}
 <div class="container-content">
+    <!-- ---------------------------- Flash Message ---------------------------- -->
+    {% if error == True %}
+            <div class="alert alert-danger alert-dismissible fade show" role="alert" 
+            style="margin-top: 10px;">
+                <strong> {{error_msg}} </strong>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+    {% else %}
+        {% for message in get_flashed_messages() %}
+            <div class="alert alert-success alert-dismissible fade show" role="alert"
+            style="margin-top: 10px;">
+                <strong> {{ message }} </strong>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        {% endfor %}
+    {% endif %}
+
+    <!-- -------------------------------- FORM --------------------------------- -->
     <form class = "row mb-3" action="#" method="post" style="margin-top:20px;">
         <div class="col-sm-8"> 
         <label for="exampleInputEmail1" class="form-label">Movie Title</label>

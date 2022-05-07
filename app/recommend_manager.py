@@ -17,8 +17,6 @@ class MovieManager():
             r"dataset_collab/similarity_model.csv", index_col=0)
         print("DF LOADED")
 
-        # TODO: CACHCE item_similarity_df
-
         return item_similarity_df
 
     def add_movie(self, movie):
@@ -52,7 +50,6 @@ class MovieManager():
             f"*****************************Watched Movies:\n{watched_movies}")
         similar_movies = pd.DataFrame()
 
-        #TODO: When only a single movie is watched it will not iterate
         for movie, rating in watched_movies:
             similar_movies = similar_movies.append(
                 self.get_similar_movie(movie, rating), ignore_index=True)

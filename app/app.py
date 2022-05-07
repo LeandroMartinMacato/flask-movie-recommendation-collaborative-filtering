@@ -1,7 +1,7 @@
 import pandas as pd
 from scipy import sparse
 from sklearn.metrics.pairwise import cosine_similarity
-from flask import Flask, request, jsonify , render_template 
+from flask import Flask, request, jsonify , render_template , flash
 from recommend_manager import MovieManager
 
 import warnings
@@ -10,12 +10,19 @@ warnings.filterwarnings("ignore")  # ignore warnings
 
 movieManager = MovieManager()
 app = Flask(__name__)
+app.config.update(
+    TESTING = True,
+    SECRET_KEY = "password"
+)
 
 # ------------------------------- FLASK ROUTES ------------------------------- #
 
 
 @app.route("/" , methods=["POST" , "GET"])
 def home():
+    error = False
+    error_message = ""
+
     try:
         if request.method == "POST":
             movie_form_input = request.form["movie_input"]
@@ -27,14 +34,19 @@ def home():
 
             if movie_form_input and rating_form_input:
                 movieManager.add_movie([movie_form_input , rating_form_input])
+                flash(f"Successfully added [{movie_form_input}]" , "info")
             else:
+                error = True
+                error_message = "Movie Input box Empty"
                 print("No movie Added , Detected Empty form")
 
 
             print(f"{movie_form_input} added")
     except Exception as e:
         print(f"EXCEPTION AT HOME: {e}")
-    return render_template("index.html")
+        print("MOVIE NOT IN DB")
+
+    return render_template("index.html" , error = error , error_msg = error_message)
 
 
 @app.route("/get_recommend", methods=["POST"])

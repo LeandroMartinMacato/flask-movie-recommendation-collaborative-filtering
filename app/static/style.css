@@ -10,7 +10,8 @@ body{
 
 .container-content{
     margin: auto;
-    width: 50%
+    width: 50%;
+    height:90%;
 }
 
 .flex-movies-parent{
