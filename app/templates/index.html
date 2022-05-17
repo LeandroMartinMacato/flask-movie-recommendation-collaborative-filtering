@@ -19,6 +19,8 @@
         {% endfor %}
     {% endif %}
 
+    <div class="reset-alert"></div>
+
     <!-- -------------------------------- FORM --------------------------------- -->
     <form class = "row mb-3" action="#" method="post" style="margin-top:20px;">
         <div class="col-sm-8"> 
@@ -40,16 +42,19 @@
         <div id="movie-rate-guide" class="form-text"> Rate the movie from 1 - 5 </div>
         </div>
 
+        <!-- ------------------------------- BUTTONS ------------------------------- -->
         <p></p>
-        <p> <button type="submit" value="submit" class="btn btn-outline-primary">Submit Movie Review</button>
+        <p> <button type="submit" value="submit" class="btn btn-outline-primary" id="submit-btn">Submit Movie Review</button>
             
-        <a href=# id="test">
-            <button class="btn btn-outline-dark">Clear Movie Review</button>
-        </a>
+        <button class="btn btn-outline-dark" id="clear-butt">
+            Clear Movie Review
+        </button>
     </form>
-    <!-- <a href="http://127.0.0.1:5000/get_recommend"> Recommend API Link</a> -->
+    <!-- ------------------------- Recommended Movies -------------------------- -->
     <h3> Recommended Movies: </h3>
-    <button onclick="show_movies()" type="button" class="btn btn-outline-success">Show Recommendation</button>
+    <button onclick="show_movies()" type="button" class="btn btn-outline-success" id="show-movies-btn">
+        Show Recommendation
+    </button>
     <br>
     <div class="flex-movies-parent">
         <!-- <div class="flex-movie-child"> TEST </div>
