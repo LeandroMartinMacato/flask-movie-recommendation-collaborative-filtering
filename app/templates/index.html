@@ -51,34 +51,21 @@
         </button>
     </form>
     <!-- ------------------------- Recommended Movies -------------------------- -->
-    <h3> Recommended Movies: </h3>
-    <button onclick="show_movies()" type="button" class="btn btn-outline-success" id="show-movies-btn">
-        Show Recommendation
-    </button>
-    <br>
-    <div class="flex-movies-parent">
-        <!-- <div class="flex-movie-child"> TEST </div>
-        <div class="flex-movie-child"> TEST </div>
-        <div class="flex-movie-child"> TEST </div> -->
-        <!-- <div id="dynamic_movies">{{RECO_MOVIES}}</div> -->
+    <div class="flex-container-parent">
+        <div class="flex-child">
+            <h3> Recommended Movies: </h3>
+        </div>
+    
+        <div class="flex-child" style="text-align: right">
+            <button onclick="show_movies()" type="button" class="btn btn-outline-success" id="show-movies-btn">
+                Show Recommendation
+            </button>
+        </div>
+    </div>
+    <hr class="style8">
+    <div id="dynamic_movies">{{RECO_MOVIES}}</div>
 
     </div>
-    <br>
-    <hr>
-    <!-- --------------------------- TEST MOVIE CARD --------------------------- -->
-    <div class="row row-cols-1 row-cols-md-3 g-4">
-        <div id="dynamic_movies">{{RECO_MOVIES}}</div>
-        <!-- <div class="col">
-            <div class="card">
-                <img src="static/img/posters/1.jpg" class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">Movie title</h5>
-                    <p class="card-text">Occaecat nisi eiusmod eiusmod dolore voluptate ea anim.</p>
-                </div>
-            </div>
-        </div> -->
-    </div>
-</div>
 
 
 {% endblock %}

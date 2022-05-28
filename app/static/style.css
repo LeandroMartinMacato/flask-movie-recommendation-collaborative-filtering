@@ -8,6 +8,8 @@ body{
     font-size: 18px;
 }
 
+
+
 .container-content{
     margin: auto;
     width: 50%;
@@ -28,3 +30,23 @@ body{
     flex-grow: 1;
 }
 
+
+.flex-container-parent{
+    display: flex;
+}
+
+.flex-child{
+    flex: 1;
+}
+
+hr.style8 {
+	border-top: 1px solid #8c8b8b;
+	border-bottom: 1px solid #fff;
+}
+hr.style8:after {
+	content: '';
+	display: block;
+	margin-top: 2px;
+	border-top: 1px solid #8c8b8b;
+	border-bottom: 1px solid #fff;
+}
