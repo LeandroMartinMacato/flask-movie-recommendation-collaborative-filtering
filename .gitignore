@@ -1,3 +1,5 @@
 *.pyc
 
 /git_ignore/
+/app/static/img/posters
+/.vscode/

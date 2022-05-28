@@ -1,3 +1,15 @@
 <div id="dynamic_movies">
-{{ RECO_MOVIES }}
+    {% for movie , index in MOVIE_DATA.items() %}
+    <!-- <h1> Movie {{movie}}
+    <h2> Index {{index}} </h2> -->
+    <div class="col">
+        <div class="card">
+            <img src="static/img/posters/{{index}}.jpg" class="card-img-top" alt="...">
+            <div class="card-body">
+                <h5 class="card-title">{{movie}}</h5>
+                <p class="card-text">Occaecat nisi eiusmod eiusmod dolore voluptate ea anim.</p>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
 </div>

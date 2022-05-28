@@ -53,7 +53,20 @@ def home():
 def get_recommendation():
     recommended_movies = movieManager.getRecommendations(movieManager.get_watched_movie())
 
-    return jsonify('',render_template('dynamic_movies.html', RECO_MOVIES = recommended_movies))
+    movieManager.clear_movie_index()
+    movieManager.get_all_movies_index(recommended_movies)
+    reco_movies_index_list = movieManager.recommended_movies_index
+
+    reco_movies_dict = dict(zip(recommended_movies , reco_movies_index_list))
+
+    # reco_movies_index
+    print("----------------")
+    print(recommended_movies)
+    print("----------------")
+    print(reco_movies_index_list)
+
+
+    return jsonify('',render_template('dynamic_movies.html', MOVIE_DATA = reco_movies_dict))
 
 @app.route("/display_recommendation")
 def display_recommendation():
