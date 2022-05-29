@@ -20,8 +20,15 @@ git clone https://github.com/LeandroMartinMacato/minimax-tictactoe-flask
 pip install -r requirements.txt
 ```
 
-### 3. Run Flask Server
+### 3. Download and Unzip Movie Posters
 
-``` python
+[Google Drive Link](https://drive.google.com/file/d/1Cq_8WtkJe6-xvqHSIFwlW85VuPruqXT2/view?usp=sharing)
+'''
+unzip inside ./app/static/posters
+'''
+
+### 4. Run Flask Server
+
+```python
 ./app python app.py
 ```
