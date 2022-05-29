@@ -3,6 +3,7 @@ from scipy import sparse
 from sklearn.metrics.pairwise import cosine_similarity
 from flask import Flask, request, jsonify , render_template , flash
 from recommend_manager import MovieManager
+import json
 
 import warnings
 
@@ -22,6 +23,7 @@ app.config.update(
 def home():
     error = False
     error_message = ""
+    movie_list =  movieManager.get_movie_list()
 
     try:
         if request.method == "POST":
@@ -46,7 +48,7 @@ def home():
         print(f"EXCEPTION AT HOME: {e}")
         print("MOVIE NOT IN DB")
 
-    return render_template("index.html" , error = error , error_msg = error_message)
+    return render_template("index.html" , error = error , error_msg = error_message , movie_list = json.dumps(movie_list))
 
 
 @app.route("/get_recommend", methods=["POST"])

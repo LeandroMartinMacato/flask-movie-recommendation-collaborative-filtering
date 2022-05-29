@@ -10,7 +10,7 @@ warnings.filterwarnings("ignore")  # ignore warnings
 class MovieManager():
     def __init__(self):
         self.item_similarity_df = self.load_recommendation()
-        self.movie_dict = self.load_movie_list() 
+        self.movie_dict = self.load_movie_dict() 
         self.movie_watched = []
         self.recommended_movies_index = []
 
@@ -20,12 +20,21 @@ class MovieManager():
         print("DF LOADED")
         return item_similarity_df
 
-    def load_movie_list(self):
+    def load_movie_dict(self):
         movie_pd = pd.read_csv(
             r"data/movie_list.csv", index_col=0)
         movie_dict = movie_pd.to_dict()["title"]
         print("MOVIE DICT LOADED")
         return movie_dict
+
+    def get_movie_list(self):
+        movie_pd = pd.read_csv(
+            r"data/movie_list.csv", index_col=0)
+        movie_list = self.movie_dict
+        movie_list = list(movie_list.values()) 
+
+        return movie_list
+
 
     def add_movie(self, movie):
         self.movie_watched.append(movie)
@@ -107,6 +116,11 @@ if __name__ == "__main__":
     # pass
     movieManager = MovieManager()
 
+    print(movieManager.get_movie_list())
+
+    # movieDict = movieManager.load_movie_dict()
+    # print(list(movieDict.values()))
+
     # movie_user = [
     #     ("Zombieland (2009)", 5),
     #     ("Zootopia (2016)", 1),
@@ -115,10 +129,10 @@ if __name__ == "__main__":
     #     ("10 Things I Hate About You (1999)", 3)
     # ]
 
-    movieManager.add_movie(["Zombieland (2009)", 5])
+    # movieManager.add_movie(["Zombieland (2009)", 5])
     # movieManager.add_movie(["Zootopia (2016)", 1])
 
-    recommended_movies = movieManager.getRecommendations(movieManager.get_watched_movie())
+    # recommended_movies = movieManager.getRecommendations(movieManager.get_watched_movie())
     # print(recommended_movies)
 
     # recommended_movies_index = []
@@ -127,17 +141,17 @@ if __name__ == "__main__":
 
     # print(recommended_movies_index)
 
-    movieManager.get_all_movies_index(recommended_movies)
+    # movieManager.get_all_movies_index(recommended_movies)
     # print("----------------------------")
     # print(movieManager.recommended_movies_index)
 
 
-    print(type(movieManager.recommended_movies_index))
-    print(type(recommended_movies))
+    # print(type(movieManager.recommended_movies_index))
+    # print(type(recommended_movies))
 
-    combined_dict = dict(zip(movieManager.recommended_movies_index , recommended_movies))
-    print(type(combined_dict))
-    print(combined_dict)
-    print(combined_dict[79702])
+    # combined_dict = dict(zip(movieManager.recommended_movies_index , recommended_movies))
+    # print(type(combined_dict))
+    # print(combined_dict)
+    # print(combined_dict[79702])
         
 
