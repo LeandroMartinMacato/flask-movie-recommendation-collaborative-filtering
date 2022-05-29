@@ -1,4 +1,5 @@
 <div id="dynamic_movies">
+    {% if MOVIE_DATA.items() %}
     <div class="row row-cols-1 row-cols-md-3 g-4">
         {% for movie , index in MOVIE_DATA.items() %}
         <div class="col">
@@ -14,4 +15,9 @@
         </div>
         {% endfor %}
     </div>
+    {% else %}
+    <div class="alert alert-dark" role="alert" style="text-align: center">
+      Try to suggest more movies 🤔
+    </div>
+    {% endif %}
 </div>
