@@ -1,6 +1,6 @@
 # MOVIE RECOMMENDATIONS SYSTEM USING COLLABORATIVE FILTERING
 
-![logo](./docs/screenshot.png)
+![logo](./docs/Screenshot.png)
 
 ## About
 
